@@ -16,7 +16,7 @@ module.exports = {
     // model.loadAll(req.body)
   },
   get: (req, res) => {
-    model.getAll()
+    model.getAll(req.query.number, req.query.condition)
       .then((dbResponse)=>{
         res.json(dbResponse)
       })
@@ -25,9 +25,9 @@ module.exports = {
       })
   },
   change: (req, res) => {
-    console.log(req.body)
     model.changeBoolean(req.body.id, req.body.foaming)
       .then((dbResponse)=>{
+        req.query.condition = "everything"
         module.exports.get(req, res)
       })
       .catch((err)=>{
