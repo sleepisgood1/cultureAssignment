@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import data from '../exampleData.js';
+import data1 from '../exampleData.js';
 import ExperimentPictures from './ExperimentPictures.jsx';
 import axios from 'axios'
 const App = () => {
@@ -16,7 +16,9 @@ const App = () => {
       }
     })
       .then((data)=>{
-        setExpData(data)
+        console.log('data', data1)
+        console.log('now', data.data)
+        setExpData(data.data)
       })
   }, [])
 

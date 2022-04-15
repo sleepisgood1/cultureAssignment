@@ -2,11 +2,14 @@
 import React from 'react';
 
 const OnePicCard = (props) => {
+  if (props.data.foaming ===null) {
+    props.data.foaming = "null"
+  }
   const [foaming, setFoaming] = (props.data.foaming)
   return (
     <div>
       <img src={props.data.url} />
-      <p>{props.data.foaming}</p>
+      {props.data.foaming!=="null" ? <p>{props.data.foaming}</p> : <p>Nothing Selected</p>}
       <form>
         <label>
           <input
