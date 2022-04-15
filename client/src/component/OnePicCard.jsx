@@ -8,14 +8,14 @@ const OnePicCard = (props) => {
   const [foaming, setFoaming] = useState(props.data.foaming)
   const onClickOfRadio = (event) => {
     // console.log(event.target)
-    setFoaming(event.target.value)
+    setFoaming(JSON.parse(event.target.value))
     //send an axios.put req to database and have it return the updated list
   };
 
   return (
     <div>
       <img src={props.data.url} />
-      <p>Original: {props.data.foaming} New Value: {foaming === "true" ? "Foaming" : (foaming === "false" ? "Not Foaming" : "Nothing Selected")}</p>
+      <p>Original: {props.data.foaming === true ? "Foaming" : (props.data.foaming === false ? "Not Foaming" : "Nothing Selected")} New Value: {foaming === true ? "Foaming" : (foaming === false ? "Not Foaming" : "Nothing Selected")}</p>
       <form onSubmit={(event)=>{
         event.preventDefault()
         props.onSubmitOfForm(props.data.id, foaming)
@@ -25,7 +25,8 @@ const OnePicCard = (props) => {
             type= "radio"
             name= "foaming-boolean"
             value="false"
-            checked={foaming==="false"}
+            checked={foaming===false}
+            onChange={()=>{}}
             onClick={onClickOfRadio}
           />
           Not Foaming
@@ -35,7 +36,8 @@ const OnePicCard = (props) => {
             type= "radio"
             name= "null-boolean"
             value="null"
-            checked={foaming==="null"}
+            checked={foaming===null}
+            onChange={()=>{}}
             onClick={onClickOfRadio}
           />
           Nothing Checked
@@ -45,7 +47,8 @@ const OnePicCard = (props) => {
             type= "radio"
             name= "foaming-boolean"
             value="true"
-            checked={foaming==="true"}
+            checked={foaming===true}
+            onChange={()=>{}}
             onClick={onClickOfRadio}
           />
           Foaming

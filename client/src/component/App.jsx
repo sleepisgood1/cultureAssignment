@@ -5,23 +5,32 @@ import axios from 'axios'
 import FilterButtons from './FilterButtons.jsx'
 
 const App = () => {
-  const [filter, setFilter] = useState("everything")
+  const [filter, setFilter] = useState("everything");
   const [expData, setExpData] = useState([]);
-  const onClickOfRadio = (event) => {
-    console.log(event.target)
-    //send an axios.put req to database and have it return the updated list
-  };
+
   const onSubmitButton = (id, foaming) => {
-    console.log(id, foaming)
+    // console.log(id, foaming)
     axios.put('/update', {id, foaming})
       .then((response)=> {
-        console.log(response)
+        // console.log(response)
         setExpData(response.data)
       })
-  }
+  };
+
   const filterButton = (event)=>{
-    console.log(event.target)
-  }
+    // console.log(event.target)
+    console.log(event.target.value)
+    axios.get('/getAll', {
+      params: {
+        number: 30,
+        condition: event.target.value
+      }
+    })
+      .then((response)=>{
+        setExpData(response.data)
+      })
+  };
+
   useEffect(()=>{
     axios.get('/getAll', {
       params: {
@@ -32,7 +41,7 @@ const App = () => {
       .then((data)=>{
         setExpData(data.data)
       })
-  }, [])
+  }, []);
 
   return (
     <div>
@@ -41,5 +50,5 @@ const App = () => {
       <ExperimentPictures pictureData={expData} onSubmitOfForm={onSubmitButton}/>
     </div>
   )
-}
+};
 export default App;
