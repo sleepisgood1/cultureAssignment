@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS photos
 CREATE TABLE photos (
   id BIGSERIAL,
   url TEXT NOT NULL,
-  foaming BOOLEAN,
+  foaming BOOLEAN DEFAULT NULL,
   last_modified timestamp with time zone DEFAULT now()
 )
 
