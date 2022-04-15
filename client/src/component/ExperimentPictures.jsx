@@ -3,7 +3,7 @@ import OnePicCard from './OnePicCard.jsx';
 
 const ExperimentPictures = (props) => {
   var pictureData = props.pictureData.map((onePicData)=>{
-    return <OnePicCard key={onePicData.url} data={onePicData} onClickOfRadio={props.onClickOfRadio}/>
+    return <OnePicCard key={onePicData.url} data={onePicData} onSubmitOfForm={props.onSubmitOfForm}/>
   })
   return (
     <div>{pictureData}</div>

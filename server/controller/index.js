@@ -18,6 +18,7 @@ module.exports = {
   get: (req, res) => {
     model.getAll(req.query.number, req.query.condition)
       .then((dbResponse)=>{
+        console.log('hhhere', req.query.condition, dbResponse)
         res.json(dbResponse)
       })
       .catch((err)=>{
@@ -25,10 +26,18 @@ module.exports = {
       })
   },
   change: (req, res) => {
+    console.log(req.body)
     model.changeBoolean(req.body.id, req.body.foaming)
-      .then((dbResponse)=>{
-        req.query.condition = "everything"
-        module.exports.get(req, res)
+      .then(()=>{
+        // console.log('here', dbResponse)
+        model.getAll(30, "everything")
+          .then((dbResponse)=>{
+            res.json(dbResponse)
+          })
+          .catch((err)=>{
+            console.log('err in get part of change func')
+            res.json(err)
+          })
       })
       .catch((err)=>{
         res.json(err)
