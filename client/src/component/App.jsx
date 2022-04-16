@@ -47,8 +47,12 @@ const App = () => {
     <div>
       <h1>Lets do this Culture!</h1>
       <FilterButtons filterButton={filterButton}/>
-      <ExperimentPictures pictureData={expData} onSubmitOfForm={onSubmitButton}/>
-    </div>
+
+      <ExperimentPictures pictureData={expData} onSubmitOfForm={onSubmitButton} style={{
+        "display": "flex",
+        "flex-direction": "row"
+    }}/>
+       </div>
   )
 };
 export default App;
