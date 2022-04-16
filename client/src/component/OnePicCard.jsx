@@ -1,6 +1,8 @@
 
 import React, {useState, useEffect} from 'react';
-import {ModalDialog, Modal, Card, Button} from "react-bootstrap"
+import {Card} from "react-bootstrap"
+import Modal from './OnePicCard.jsx'
+
 
 const OnePicCard = (props) => {
   if (props.data.foaming ===null) {
@@ -30,23 +32,19 @@ const OnePicCard = (props) => {
       src={props.data.url}
       onClick={handleOpen}
       />
-      <Modal
-      show={show}
-      onHide={handleClose}
-      size={"xl"}
-      >
-        <ModalDialog
-        size={"xl"}
-        >
+      {show ? (
+      <div style={{
+        "position": "fixed",
+        "z-index": "1",
+        "height": "100%",
+        "left": "50%",
+        "top": "50%",
+        "transform": "translate(-50%, -50%)"
 
-        <Modal.Body
-        size={"xl"}
-        >
-          <img src={props.data.url} onClick={handleClose}/>
-        </Modal.Body>
-        </ModalDialog>
-
-      </Modal>
+      }}>
+        <img src={props.data.url} onClick={handleClose}/>
+      </div>
+    ) : ""}
       <Card.Body>
       <Card.Text>Original: {props.data.foaming === true ? "Foaming" : (props.data.foaming === false ? "Not Foaming" : "Nothing Selected")}</Card.Text>
       <Card.Text>New Value: {foaming === true ? "Foaming" : (foaming === false ? "Not Foaming" : "Nothing Selected")}</Card.Text>
